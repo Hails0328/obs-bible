@@ -32,3 +32,9 @@ loadVerse();
   if (style.font) container.style.fontFamily = style.font;
   if (style.fontSize) container.style.fontSize = style.fontSize + 'px';
   if (style.align) container.style.textAlign = style.align;
+
+window.addEventListener("storage", (event) => {
+  if (event.key === "bibleUpdated") {
+    loadVerse();
+  }
+});
