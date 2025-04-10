@@ -71,17 +71,19 @@ function populateVerses() {
 function updateDisplay() {
   const s = document.getElementById('startVerse').value;
   const e = document.getElementById('endVerse').value;
-  const url = new URL('../display/index.html', window.location.href);
-  url.searchParams.set('book', selectedBook);
-  url.searchParams.set('chapter', selectedChapter);
-  url.searchParams.set('start', s);
-  url.searchParams.set('end', e);
-  localStorage.setItem('verseRef', url.search);
-  const win = window.open(url.href, 'bibleDisplayWindow');
-  if (win) {
-    win.location.href = url.href;
-  }
+  const urlParams = new URLSearchParams();
+  urlParams.set('book', selectedBook);
+  urlParams.set('chapter', selectedChapter);
+  urlParams.set('start', s);
+  urlParams.set('end', e);
+
+  // Save data so the display page can read it
+  localStorage.setItem('verseRef', urlParams.toString());
+
+  // Send a signal that something changed
+  localStorage.setItem('bibleUpdated', Date.now().toString());
 }
+
 
 loadBible();
 
