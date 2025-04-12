@@ -57,9 +57,10 @@ async function loadVerse() {
     return;
   }
 
-  document.getElementById('verseDisplay').innerHTML = output.join('');
-  applySavedStyle();
-}
+  const container = document.getElementById('verseDisplay');
+container.innerHTML = ''; // clear placeholder
+container.innerHTML = output.join('');
+
 
 loadVerse();
 
